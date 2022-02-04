@@ -39,17 +39,21 @@ Subject to the BSD license.
    It can be used from dial-up network or 24term.
 
 ## 232usb.exe
+
 You can use 232usb.exe to check and change the settings of 232usb.dll.
 No change is required for normal use.
 After changing, it is necessary to insert or remove the device or reset.
-[New]
-  Used for manual registration of devices.
-[Nam]
-  Rename the device. Reset is required after setting.
+
+`[New]` Used for manual registration of devices.
+  
+`[Nam]` Rename the device. Reset is required after setting.
 Please recreate the dialup network entry.
-[Del]
+
+`[Del]`
   Delete the registry for the device.
+  
 If you replace 232usb.dll, delete the registry of all devices.
+
  * BASIC (Check model: Sig3 USB client)
   This is a general-purpose driver that simply uses bulk pipe input/output as a COM port.
   Control lines cannot be used.
@@ -95,8 +99,7 @@ When sending 16n + 14 bytes with NPD-20JWL etc. using MediaQ MQ1132
 
 `Recv[]` Specify the receiving endpoint in hexadecimal. bit15-8 are for file transfer with CDC WMC.
 
-`Send[]`
-Specify the transmission endpoint in hexadecimal.
+`Send[]` Specify the transmission endpoint in hexadecimal.
 bit15-8 are for file transfer with CDC WMC.
 
 `Class[]` Specify the end point for control line in hexadecimal.
@@ -107,53 +110,23 @@ bit15-8 are for file transfer with CDC WMC.
 
 
 ## Notes
+
  * 232usb.dll uses the following registry.
-  \HKEY_LOCAL_MACHINE\Drivers\USB\LoadClients\Default\Default\Default\RS232_USB
+   * `\HKEY_LOCAL_MACHINE\Drivers\USB\LoadClients\Default\Default\Default\RS232_USB`
     It is temporarily used as a hook when registering a new device driver.
-  \HKEY_LOCAL_MACHINE\Drivers\USB\LoadClients\255_2_0\Default\Default\RS232_USB
-    This is an entry created for each device.
-    255_2_0 is the vendor_product_release number of each device.
--There are many devices and CEs that do not work well.
- * If you are not asked for the driver name even if you insert a new device, try another driver.
+   * `\HKEY_LOCAL_MACHINE\Drivers\USB\LoadClients\255_2_0\Default\Default\RS232_USB` This is an entry created for each device. `255_2_0` is the vendor_product_release number of each device.
+ * There are many devices and CEs that do not work well.
+   * If you are not asked for the driver name even if you insert a new device, try another driver.
   It is working, stuck in current limit, or the cable is defective.
- * Sig3 has a tight current limit and is strict against signal deterioration.
+   * Sig3 has a tight current limit and is strict against signal deterioration.
   The AH-K3001V works with the standard FOMA driver.
--Manual registration function for models such as W-ZERO3es that cannot specify device driver name
+ * Manual registration function for models such as W-ZERO3es that cannot specify device driver name
   I put it on. There is no change in the device driver function.
- * For abnormal situations such as cable disconnection, power cutoff, process forced termination, etc.
+   * For abnormal situations such as cable disconnection, power cutoff, process forced termination, etc.
   The handling and the flow control are pretty difficult.
- * Since the handling of the receiving thread is changed from the old version, the speed does not come out
+   * Since the handling of the receiving thread is changed from the old version, the speed does not come out
   maybe. In that case, please use the 03-9-30 version.
- * 232usb.exe may be put in the same Windows directory as 232usb.dll.
- * The operation has been confirmed with Sig2, Sig3, NPD-20JWL, HPW-600JC and W-ZERO3es.
+   * 232usb.exe may be put in the same Windows directory as 232usb.dll.
+   * The operation has been confirmed with Sig2, Sig3, NPD-20JWL, HPW-600JC and W-ZERO3es.
 
 See source.txt in the src directory for the source.
-
----
-232usb-RS232 USB driver for WindowsCE
-
-Copyright (c) 03-04,06 Zoroyoshi, Japan
-
-All rights reserved.
-
-Redistribution and use in source and binary forms, with or without
-modification, are permitted provided that the following conditions
-are met:
-1. Redistributions of source code must retain the above copyright
-   notice, this list of conditions and the following disclaimer.
-2. Redistributions in binary form must reproduce the above copyright
-   notice, this list of conditions and the following disclaimer in the
-   documentation and/or other materials provided with the distribution.
-3. The name of the author may not be used to endorse or promote products
-   derived from this software without specific prior written permission.
-
-THIS SOFTWARE IS PROVIDED BY THE AUTHOR "AS IS" AND ANY EXPRESS OR
-IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
-OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
-IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT,
-INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
-NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
-DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
-THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
